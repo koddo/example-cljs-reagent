@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+
+  figwheel:
+    build:
+      context: dockerfiles_empty_build_context
+      dockerfile: Dockerfile_figwheel
+    volumes:
+      - .:/home/theuser/theproject
+      - ./lein-deps:/home/theuser/.m2/      # cache dependencies of lein figwheel to avoid downloading them on every run, this is gitignored
+    working_dir: /home/theuser/theproject
+    command: lein figwheel
+
+    network_mode: bridge     # dnsdock quirk
+
+  gulp:
+    build:
+      context: dockerfiles_empty_build_context
+      dockerfile: Dockerfile_gulp
+    volumes:
+      - .:/home/node/theproject    # they already added the user
+    working_dir: /home/node/theproject
+    command: gulp
+

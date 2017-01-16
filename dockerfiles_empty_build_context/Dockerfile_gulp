@@ -1,0 +1,6 @@
+FROM node
+
+RUN npm install --global gulp-cli
+
+# they already added the user
+USER node
