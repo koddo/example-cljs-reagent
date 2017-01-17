@@ -39,6 +39,7 @@ $ docker-compose --project-name projectname run --rm --no-deps figwheel lein new
 
 TODO: try `+test`, `+garden`
 
+The name is `theproject` everywhere, so it can be easily replaced.
 
 
 

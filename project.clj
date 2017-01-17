@@ -15,6 +15,8 @@
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
 
   :figwheel {
+             :server-ip     "0.0.0.0"
+             :server-port   3449
              :css-dirs ["resources/public/css"]
              :repl false :nrepl-port 7888
              ;; :hawk-options {:watcher :polling}
