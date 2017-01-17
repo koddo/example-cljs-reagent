@@ -1,5 +1,5 @@
 
-You are free to delete this file from cloned repos.
+Remove this file from the cloned repos.
 
 # How to use
 
@@ -29,7 +29,7 @@ $ docker-compose --project-name projectname run --rm --no-deps gulp
 ```
 
 
-# misc
+# Misc
 
 Originally the boilerplate was generated with <https://github.com/Day8/re-frame-template>:
 
