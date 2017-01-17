@@ -14,8 +14,12 @@
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
 
-  :figwheel {:css-dirs ["resources/public/css"]}
+  :figwheel {
+             :css-dirs ["resources/public/css"]
+             :repl false :nrepl-port 7888
+             }
 
+  
   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
 
   :profiles
@@ -31,7 +35,10 @@
   {:builds
    [{:id           "dev"
      :source-paths ["src/cljs"]
-     :figwheel     {:on-jsload "theproject.core/mount-root"}
+     :figwheel     {
+                    :on-jsload "theproject.core/mount-root"
+                    :websocket-host :js-client-host
+                    }
      :compiler     {:main                 theproject.core
                     :output-to            "resources/public/js/compiled/app.js"
                     :output-dir           "resources/public/js/compiled/out"
