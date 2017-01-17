@@ -17,6 +17,7 @@
   :figwheel {
              :css-dirs ["resources/public/css"]
              :repl false :nrepl-port 7888
+             ;; :hawk-options {:watcher :polling}
              }
 
   
