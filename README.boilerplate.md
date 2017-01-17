@@ -1,5 +1,5 @@
 
-Remove this file from the cloned repos.
+It's ok to remove this file from the cloned repos.
 
 # How to use
 
