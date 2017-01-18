@@ -1,5 +1,5 @@
 
-It's ok to remove this file from the cloned repos.
+It's ok to remove this file from the cloned repos, this won't break merging updates.
 
 # How to use
 
@@ -28,6 +28,20 @@ $ docker-compose --project-name projectname run --rm --no-deps figwheel
 $ docker-compose --project-name projectname run --rm --no-deps gulp
 ```
 
+## Cljs repl
+
+To connect to the nrepl, do `M-x cider-connect` and evaluate the following:
+
+``` Clojure
+(use 'figwheel-sidecar.repl-api)
+(cljs-repl)
+```
+
+You can now try this to see effect in the browser:
+
+``` Clojure
+(js/console.log "hello world")
+```
 
 # Misc
 
@@ -41,5 +55,10 @@ TODO: try `+test`, `+garden`
 
 The name is `theproject` everywhere, so it can be easily replaced.
 
+
+
+# Checklist
+
+- cider-connect
 
 
