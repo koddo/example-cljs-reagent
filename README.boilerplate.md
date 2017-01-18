@@ -51,9 +51,10 @@ Originally the boilerplate was generated with <https://github.com/Day8/re-frame-
 $ docker-compose --project-name projectname run --rm --no-deps figwheel lein new re-frame theproject --to-dir . +cider +routes +re-frisk
 ```
 
-TODO: try `+test`, `+garden`
+TODO: try `+test`
+TODO: try `+garden`
 
-The name is `theproject` everywhere, so it can be easily replaced.
+The name is `theproject` everywhere, so it can be easily replaced. I don't want to spend time on finding good name for a project before writing any code.
 
 
 
