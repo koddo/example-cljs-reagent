@@ -1,4 +1,6 @@
 
+[![Build Status](https://travis-ci.org/koddo/my-boilerplate-cljs-reagent.svg?branch=master)](https://travis-ci.org/koddo/my-boilerplate-cljs-reagent)
+
 # Hello world
 
 ...
