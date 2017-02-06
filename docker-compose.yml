@@ -1,10 +1,13 @@
-version: '2'
+# --project-name cljstest
+
+version: '3'
+
 
 services:
 
   figwheel:
     build:
-      context: dockerfiles_empty_build_context
+      context: .
       dockerfile: Dockerfile_figwheel
     volumes:
       - .:/home/theuser/theproject
@@ -16,7 +19,7 @@ services:
 
   gulp:
     build:
-      context: dockerfiles_empty_build_context
+      context: .
       dockerfile: Dockerfile_gulp
     volumes:
       - .:/home/node/theproject    # they already added the user

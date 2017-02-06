@@ -12,7 +12,7 @@
 
   :source-paths ["src/clj"]
 
-  :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
+  :clean-targets ^{:protect false} ["resources/public/js/compiled" "target" "test/js"]
 
   :figwheel {
              :server-ip     "0.0.0.0"
@@ -31,7 +31,8 @@
                    [figwheel-sidecar "0.5.7"]
                    [com.cemerick/piggieback "0.2.1"]]
 
-    :plugins      [[lein-figwheel "0.5.7"]]
+    :plugins      [[lein-figwheel "0.5.7"]
+                   [lein-doo "0.1.7"]]
     }}
 
   :cljsbuild
@@ -59,7 +60,11 @@
                     :closure-defines {goog.DEBUG false}
                     :pretty-print    false}}
 
-
+    {:id           "test"
+     :source-paths ["src/cljs" "test/cljs"]
+     :compiler     {:main          theproject.runner
+                    :output-to     "resources/public/js/compiled/test.js"
+                    :output-dir    "resources/public/js/compiled/test/out"
+                    :optimizations :none}}
     ]}
-
   )

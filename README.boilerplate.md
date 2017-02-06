@@ -17,15 +17,14 @@ Whenever the boilerplate updates, merge the changes with the last command above.
 Dependencies first:
 
 ``` Shell
-$ docker-compose --project-name projectname run --rm --no-deps figwheel lein deps
-$ docker-compose --project-name projectname run --rm --no-deps gulp npm install
+$ docker-compose run --rm --no-deps figwheel lein deps
+$ docker-compose run --rm --no-deps gulp npm install
 ```
 
 Then run:
 
 ``` Shell
-$ docker-compose --project-name projectname run --rm --no-deps figwheel
-$ docker-compose --project-name projectname run --rm --no-deps gulp
+$ docker-compose up -d
 ```
 
 ## Cljs repl
@@ -41,6 +40,14 @@ You can now try this to see effect in the browser:
 
 ``` Clojure
 (js/console.log "hello world")
+```
+
+# Tests
+
+``` Shell
+$ lein clean
+$ lein doo phantom test once
+
 ```
 
 # Misc
