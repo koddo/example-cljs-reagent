@@ -50,6 +50,8 @@ $ lein doo phantom test once
 
 ```
 
+TODO: write actual tests
+
 # Misc
 
 Originally the boilerplate was generated with <https://github.com/Day8/re-frame-template>:
@@ -58,10 +60,14 @@ Originally the boilerplate was generated with <https://github.com/Day8/re-frame-
 $ docker-compose --project-name projectname run --rm --no-deps figwheel lein new re-frame theproject --to-dir . +cider +routes +re-frisk
 ```
 
-TODO: try `+test`
+TODO: pushy for routes without octothorp
+TODO: spec for app state
+TODO: where to put macros
+TODO: cljs-devtools: <https://github.com/Day8/re-frame/blob/master/docs/FAQs/Inspecting-app-db.md>
 TODO: try `+garden`
 
 The name is `theproject` everywhere, so it can be easily replaced. I don't want to spend time on finding good name for a project before writing any code.
+
 
 
 

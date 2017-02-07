@@ -15,8 +15,6 @@ services:
     working_dir: /home/theuser/theproject
     command: lein figwheel
 
-    network_mode: bridge     # dnsdock quirk
-
   gulp:
     build:
       context: .
