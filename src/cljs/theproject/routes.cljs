@@ -22,9 +22,8 @@
   )
 
 (defn app-routes []
-  (secretary/set-config! :prefix "/")       ; was "#"
-  ;; --------------------
-  ;; define routes here
+  ;; (secretary/set-config! :prefix "#")
+
   (defroute "/" []
     (re-frame/dispatch [:set-active-panel :home-panel]))
 

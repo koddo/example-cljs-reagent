@@ -42,6 +42,7 @@ You can now try this to see effect in the browser:
 (js/console.log "hello world")
 ```
 
+
 # Tests
 
 ``` Shell
@@ -52,6 +53,14 @@ $ lein doo phantom test once
 
 TODO: write actual tests
 
+
+# Routes
+
+If you want links like `/#/about`, uncomment this line: `(secretary/set-config! :prefix "#")` in init.
+This is useful when you want to add an app directly to a blog post page.
+
+TODO: flask app to serve index.html for any path: `/`, `/about`, `/etc`, `/*`.
+
 # Misc
 
 Originally the boilerplate was generated with <https://github.com/Day8/re-frame-template>:
@@ -60,7 +69,6 @@ Originally the boilerplate was generated with <https://github.com/Day8/re-frame-
 $ docker-compose --project-name projectname run --rm --no-deps figwheel lein new re-frame theproject --to-dir . +cider +routes +re-frisk
 ```
 
-TODO: pushy for routes without octothorp
 TODO: spec for app state
 TODO: where to put macros
 TODO: cljs-devtools: <https://github.com/Day8/re-frame/blob/master/docs/FAQs/Inspecting-app-db.md>

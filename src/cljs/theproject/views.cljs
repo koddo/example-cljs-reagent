@@ -8,7 +8,7 @@
   (let [name (re-frame/subscribe [:name])]
     (fn []
       [:div (str "Hello from " @name ". This is the Home Page.")
-       [:div [:a {:href "#/about"} "go to About Page"]]])))
+       [:div [:a {:href "/about"} "go to About Page"]]])))
 
 
 ;; about
@@ -16,7 +16,7 @@
 (defn about-panel []
   (fn []
     [:div "This is the About Page."
-     [:div [:a {:href "#/"} "go to Home Page"]]]))
+     [:div [:a {:href "/"} "go to Home Page"]]]))
 
 
 ;; main
