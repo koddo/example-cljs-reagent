@@ -75,7 +75,7 @@ TODO: try `+garden`
 
 The name is `theproject` everywhere, so it can be easily replaced. I don't want to spend time on finding good name for a project before writing any code.
 
-
+For cljs-tools, enable custom formatters <https://github.com/binaryage/cljs-devtools/blob/master/docs/installation.md#enable-custom-formatters-in-chrome>
 
 
 # Checklist
