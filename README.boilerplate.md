@@ -70,7 +70,6 @@ $ docker-compose --project-name projectname run --rm --no-deps figwheel lein new
 ```
 
 TODO: spec for app state
-TODO: where to put macros
 TODO: cljs-devtools: <https://github.com/Day8/re-frame/blob/master/docs/FAQs/Inspecting-app-db.md>
 TODO: try `+garden`
 

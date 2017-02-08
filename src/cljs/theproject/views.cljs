@@ -1,5 +1,6 @@
 (ns theproject.views
-    (:require [re-frame.core :as re-frame]))
+  (:require [re-frame.core :as re-frame])
+  (:require-macros [theproject.core :as theproject :refer [my-add-macro-example]]))
 
 
 ;; home
@@ -7,7 +8,7 @@
 (defn home-panel []
   (let [name (re-frame/subscribe [:name])]
     (fn []
-      [:div (str "Hello from " @name ". This is the Home Page.")
+      [:div (str "Hello from " @name ". This is the Home Page. Here is an example of executing a macro: " (my-add-macro-example 1 1))
        [:div [:a {:href "/about"} "go to About Page"]]])))
 
 
