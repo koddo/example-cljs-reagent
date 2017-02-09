@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: Dockerfile_gulp
     volumes:
-      - .:/home/node/theproject    # they already added the user
+      - .:/home/node/theproject
     working_dir: /home/node/theproject
     command: gulp
 
