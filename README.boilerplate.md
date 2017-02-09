@@ -56,10 +56,10 @@ TODO: write actual tests
 
 # Routes
 
-If you want links like `/#/about`, uncomment this line: `(secretary/set-config! :prefix "#")` in init.
+If you want links like `/#/about`, uncomment this line in init: `(secretary/set-config! :prefix "#")`.
 This is useful when you want to add an app directly to a blog post page.
 
-TODO: flask app to serve index.html for any path: `/`, `/about`, `/etc`, `/*`.
+TODO: flask app to serve same index.html for any route: `/`, `/about`, `/etc`, `/*`
 
 # Misc
 
@@ -70,12 +70,12 @@ $ docker-compose --project-name projectname run --rm --no-deps figwheel lein new
 ```
 
 TODO: spec for app state
-TODO: cljs-devtools: <https://github.com/Day8/re-frame/blob/master/docs/FAQs/Inspecting-app-db.md>
+TODO: type hints examples
 TODO: try `+garden`
 
 The name is `theproject` everywhere, so it can be easily replaced. I don't want to spend time on finding good name for a project before writing any code.
 
-For cljs-tools, enable custom formatters <https://github.com/binaryage/cljs-devtools/blob/master/docs/installation.md#enable-custom-formatters-in-chrome>
+For cljs-tools just enable custom formatters: <https://github.com/binaryage/cljs-devtools/blob/master/docs/installation.md#enable-custom-formatters-in-chrome>
 
 
 # Checklist
