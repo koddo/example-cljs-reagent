@@ -69,12 +69,14 @@ Originally the boilerplate was generated with <https://github.com/Day8/re-frame-
 $ docker-compose --project-name projectname run --rm --no-deps figwheel lein new re-frame theproject --to-dir . +cider +routes +re-frisk
 ```
 
-TODO: type hints examples
 TODO: try `+garden`
+TODO: how to abort requests? <https://github.com/Day8/re-frame-http-fx/issues/3>
 
 The name is `theproject` everywhere, so it can be easily replaced. I don't want to spend time on finding good name for a project before writing any code.
 
 For cljs-tools just enable custom formatters: <https://github.com/binaryage/cljs-devtools/blob/master/docs/installation.md#enable-custom-formatters-in-chrome>
+
+
 
 # Checklist
 
