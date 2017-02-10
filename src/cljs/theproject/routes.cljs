@@ -9,8 +9,6 @@
 
 
 (defn app-routes []
-  ;; (secretary/set-config! :prefix "#")
-
 
   (defroute "/" []
     (re-frame/dispatch [:set-active-panel :home-panel]))
@@ -18,7 +16,7 @@
   (defroute "/about" []
     (re-frame/dispatch [:set-active-panel :about-panel]))
 
-
+  ;; (secretary/set-config! :prefix "#")      ; should it go before defroutes?
   ;; (doto (History.)
   ;;   (events/listen
   ;;    EventType/NAVIGATE
@@ -26,7 +24,6 @@
   ;;      (secretary/dispatch! (.-token event))))
   ;;   (.setEnabled true))
 
-  (def history (pushy/pushy secretary/dispatch!
-                            (fn [x] (when (secretary/locate-route x) x))))
+  (def history (pushy/pushy secretary/dispatch! (fn [x] (when (secretary/locate-route x) x))))
   (pushy/start! history)
   )
