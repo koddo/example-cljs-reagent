@@ -6,3 +6,4 @@
   ^boolean js/goog.DEBUG)
 
 (s/check-asserts true)
+
