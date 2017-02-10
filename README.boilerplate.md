@@ -56,7 +56,7 @@ TODO: write actual tests
 
 # Routes
 
-If you want links like `/#/about`, uncomment this line in init: `(secretary/set-config! :prefix "#")`.
+If you want links like `/#/about`, replace `(hook-routes)` with `(hook-routes-with-octothorp-prefix)`.
 This is useful when you want to add an app directly to a blog post page.
 
 TODO: flask app to serve same index.html for any route: `/`, `/about`, `/etc`, `/*`
