@@ -8,7 +8,7 @@ It's ok to remove this file from the cloned repos, this won't break merging upda
 
 ``` Shell
 $ github-create-repo.sh whatever-repo-name
-$ git remote add boilerplate https://github.com/koddo/my-boilerplate-cljs-reagent
+$ git remote add boilerplate https://github.com/koddo/example-cljs-reagent
 $ git pull boilerplate master
 ```
 
