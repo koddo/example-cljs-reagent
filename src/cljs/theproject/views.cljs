@@ -8,7 +8,11 @@
   (let [name (re-frame/subscribe [:name])]
     (fn []
       [:div (str "Hello from " @name ". This is the Home Page.")
-       [:div [:a {:href "/about"} "go to About Page"]]])))
+       [:div [:a {:href "/about"} "go to About Page"]]
+       [:audio {:controls true}
+        [:source {:src "https://s3.eu-central-1.amazonaws.com/test-75730/salsa.mp3" :type "audio/mpeg"}]
+        "Your browser does not support the audio element."]
+       ])))
 
 
 ;; about
