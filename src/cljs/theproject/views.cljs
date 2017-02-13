@@ -4,10 +4,12 @@
 
 ;; home
 
-(let [theaudio (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/arsonist_-_01_-_Hot_salsa_trip.mp3")]
+(let [theaudio (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/arsonist_-_01_-_Hot_salsa_trip.mp3")
+      beep (new js/Audio "https://www.soundjay.com/button/beep-07.mp3")
+      ]
   (do
     (aset theaudio "controls" true)
-    (aset theaudio "ontimeupdate" #(println (aget theaudio "currentTime")))
+    (aset theaudio "ontimeupdate" #(do (println (aget theaudio "currentTime")) (.play beep)))
     )
   (defn home-panel []
     (let [name (re-frame/subscribe [:name])]
