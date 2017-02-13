@@ -80,9 +80,14 @@ The name is `theproject` everywhere, so it can be easily replaced. I don't want 
 For cljs-tools just enable custom formatters: <https://github.com/binaryage/cljs-devtools/blob/master/docs/installation.md#enable-custom-formatters-in-chrome>
 
 
-
 # Checklist
 
 - cider-connect
+
+
+# For music example
+
+TODO: add license for salsa music
+TODO: add licence for beep from soundjay
 
 
