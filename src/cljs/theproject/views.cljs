@@ -4,15 +4,21 @@
 
 ;; home
 
-(defn home-panel []
-  (let [name (re-frame/subscribe [:name])]
-    (fn []
-      [:div (str "Hello from " @name ". This is the Home Page.")
-       [:div [:a {:href "/about"} "go to About Page"]]
-       [:audio {:controls true}
-        [:source {:src "https://s3.eu-central-1.amazonaws.com/test-75730/arsonist_-_01_-_Hot_salsa_trip.mp3" :type "audio/mpeg"}]
-        "Your browser does not support the audio element."]
-       ])))
+(let [theaudio (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/arsonist_-_01_-_Hot_salsa_trip.mp3")]
+  (do
+    (aset theaudio "controls" true)
+    (aset theaudio "ontimeupdate" #(println (aget theaudio "currentTime")))
+    )
+  (defn home-panel []
+    (let [name (re-frame/subscribe [:name])]
+      (fn []
+        [:div (str "Hello from " @name ". This is the Home Page.")
+         [:div [:a {:href "/about"} "go to About Page"]]
+         [:div {:ref #(if % (.appendChild % theaudio))}]
+         ]))))
+
+;; {:ref fn} -- fn is run two times: when the element is created and when it is destroyed
+;; we append audio element to the div when it's created
 
 
 ;; about
