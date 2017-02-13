@@ -10,7 +10,7 @@
       [:div (str "Hello from " @name ". This is the Home Page.")
        [:div [:a {:href "/about"} "go to About Page"]]
        [:audio {:controls true}
-        [:source {:src "https://s3.eu-central-1.amazonaws.com/test-75730/salsa.mp3" :type "audio/mpeg"}]
+        [:source {:src "https://s3.eu-central-1.amazonaws.com/test-75730/arsonist_-_01_-_Hot_salsa_trip.mp3" :type "audio/mpeg"}]
         "Your browser does not support the audio element."]
        ])))
 
