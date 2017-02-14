@@ -6,6 +6,8 @@
                  [re-frisk "0.3.2"]
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.6"]
+                 [org.clojars.stumitchell/clairvoyant "0.2.0"]
+                 [day8/re-frame-tracer "0.1.1-SNAPSHOT"]
                  ]
 
   :plugins [[lein-cljsbuild "1.1.4"]]
@@ -52,6 +54,7 @@
                     :source-map-timestamp true
                     :preloads             [devtools.preload]
                     :external-config      {:devtools/config {:features-to-install :all}}
+                    :closure-defines {"clairvoyant.core.devmode" true}
                     }}
 
     {:id           "min"
