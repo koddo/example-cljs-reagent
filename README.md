@@ -90,4 +90,6 @@ For cljs-tools just enable custom formatters: <https://github.com/binaryage/cljs
 TODO: add license for salsa music
 TODO: add licence for beep from soundjay
 
+I go to dance class, and I'm a fan of rueda de casino.
+It's hard for me to establish correspondence between moves and their names.
 
