@@ -2,8 +2,7 @@
   (:require [re-frame.core :as re-frame]
             [theproject.db :as db]
             [cljs.spec :as s]
-            ;; [clairvoyant.core :refer-macros [trace-forms]]
-            ;; [re-frame-tracer.core :refer [tracer]]
+            ;; [clairvoyant.core :refer-macros [trace-forms]]   [re-frame-tracer.core :refer [tracer]]
             ))
 
 ;; (trace-forms {:tracer (tracer :color "green")}

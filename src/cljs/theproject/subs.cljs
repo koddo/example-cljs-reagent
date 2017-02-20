@@ -1,8 +1,7 @@
 (ns theproject.subs
   (:require-macros [reagent.ratom :refer [reaction]])
   (:require [re-frame.core :as re-frame]
-            ;; [clairvoyant.core :refer-macros [trace-forms]]
-            ;; [re-frame-tracer.core :refer [tracer]]
+            ;; [clairvoyant.core :refer-macros [trace-forms]]   [re-frame-tracer.core :refer [tracer]]
             ))
 
 ;; (trace-forms {:tracer (tracer :color "brown")}

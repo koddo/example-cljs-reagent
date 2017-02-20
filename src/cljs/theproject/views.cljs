@@ -1,7 +1,6 @@
 (ns theproject.views
   (:require [re-frame.core :as re-frame]
-            ;; [clairvoyant.core :refer-macros [trace-forms]]
-            ;; [re-frame-tracer.core :refer [tracer]]
+            ;; [clairvoyant.core :refer-macros [trace-forms]]   [re-frame-tracer.core :refer [tracer]]
             [ajax.core :as ajax]
             [clojure.string :as string]
             ))
@@ -12,17 +11,6 @@
 
 (defonce beats (atom []))
 
-;; insert-beats-between-beats [0 1 2 3 4 5])   => [0 0.5 1 1.5 2 2.5 3 3.5 4 4.5 5]
-(defn insert-beats-between-beats [coll]
-  (let [average #(/ (+ %1 %2) 2)]
-   (loop [[x & xs] coll
-         result []]
-    (if (nil? x)
-      result
-      (recur xs (apply conj result
-                       (if xs
-                         [x (average x (first xs))]
-                         [x])))))))
 
 (defonce theaudio (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/arsonist_-_01_-_Hot_salsa_trip.mp3"))
 (ajax/GET "https://s3.eu-central-1.amazonaws.com/test-75730/arsonist_-_01_-_Hot_salsa_trip.beats"
@@ -32,7 +20,6 @@
                                           (string/split-lines %)))
            })
 ;; TODO: :error-handler
-;; TODO: fix .beats file at approx. 2:00
 
 (defonce thebeep (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/beep.mp3"))
 (defonce counts [(new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/1-uno.mp3")

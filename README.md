@@ -90,6 +90,11 @@ For cljs-tools just enable custom formatters: <https://github.com/binaryage/cljs
 TODO: add license for salsa music
 TODO: add licence for beep from soundjay
 
+TODO: configure cors in amazon for the bucket
+I now did bucket/permissions/cors -> just saved the example with `*`
+
 I go to dance class, and I'm a fan of rueda de casino.
 It's hard for me to establish correspondence between moves and their names.
+
+`$ awk '{print $1}' labels.txt` or `double_beats.py labels.txt`
 
