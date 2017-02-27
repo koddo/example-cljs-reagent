@@ -12,6 +12,17 @@
 #                      [x (average x (first xs))]
 #                      [x])))))))
 
+# (defn insert-beats-between-beats [coll]
+#  (let [average #(/ (+ %1 %2) 2)
+#        pairs (partition 2 1 coll)
+#        reduce-step (fn [acc [a b]] (concat acc [a (average a b) b]))]
+#   (reduce reduce-step [] pairs)))
+
+# (defn insert-beats-between-beats [coll]       ; drops last element, fix it
+#  (interleave coll (map
+#                    #(/ (+ %1 %2) 2)
+#                     coll (drop 1 coll))))
+
 import sys
 import os.path
 

@@ -6,8 +6,7 @@
                  [re-frisk "0.3.2"]
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.6"]
-                 [org.clojars.stumitchell/clairvoyant "0.2.0"]
-                 [day8/re-frame-tracer "0.1.1-SNAPSHOT"]
+                 ;; [org.clojars.stumitchell/clairvoyant "0.2.0"]    [day8/re-frame-tracer "0.1.1-SNAPSHOT"]
                  [cljs-ajax "0.5.8"]
                  ]
 
@@ -55,7 +54,8 @@
                     :source-map-timestamp true
                     :preloads             [devtools.preload]
                     :external-config      {:devtools/config {:features-to-install :all}}
-                    :closure-defines {"clairvoyant.core.devmode" true}
+                    ;; :closure-defines {"clairvoyant.core.devmode" true}
+                    ;; TODO: check if :parallel-build false solves the problem with random order of deps --- http://dev.clojure.org/jira/browse/CLJS-1948
                     }}
 
     {:id           "min"

@@ -14,6 +14,8 @@ services:
       - ./lein-deps:/home/theuser/.m2/      # cache dependencies of lein figwheel to avoid downloading them on every run, this is gitignored
     working_dir: /home/theuser/theproject
     command: lein figwheel
+    ports:
+      - "3449:3449"
 
   gulp:
     build:
