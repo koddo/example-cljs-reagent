@@ -11,7 +11,6 @@
 
 (defonce beats (atom []))
 
-
 (defonce theaudio (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/arsonist_-_01_-_Hot_salsa_trip.mp3"))
 (ajax/GET "https://s3.eu-central-1.amazonaws.com/test-75730/arsonist_-_01_-_Hot_salsa_trip.beats"
           {
@@ -21,15 +20,16 @@
            })
 ;; TODO: :error-handler
 
-(defonce thebeep (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/beep.mp3"))
-(defonce counts [(new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/1-uno.mp3")
-                 (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/2-dos.mp3")
-                 (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/3-tres.mp3")
-                 (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/4-cuatro.mp3")
-                 (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/5-cinco.mp3")
-                 (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/6-seis.mp3")
-                 (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/7-siete.mp3")
-                 (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/8-ocho.mp3")
+;; (defonce thebeep (new js/Audio "https://s3.eu-central-1.amazonaws.com/test-75730/beep.mp3"))
+(defonce thebeep (new js/WebAudioAPISound "https://s3.eu-central-1.amazonaws.com/test-75730/beep.mp3"))
+(defonce counts [(new js/WebAudioAPISound "https://s3.eu-central-1.amazonaws.com/test-75730/1-uno.mp3")
+                 (new js/WebAudioAPISound "https://s3.eu-central-1.amazonaws.com/test-75730/2-dos.mp3")
+                 (new js/WebAudioAPISound "https://s3.eu-central-1.amazonaws.com/test-75730/3-tres.mp3")
+                 (new js/WebAudioAPISound "https://s3.eu-central-1.amazonaws.com/test-75730/4-cuatro.mp3")
+                 (new js/WebAudioAPISound "https://s3.eu-central-1.amazonaws.com/test-75730/5-cinco.mp3")
+                 (new js/WebAudioAPISound "https://s3.eu-central-1.amazonaws.com/test-75730/6-seis.mp3")
+                 (new js/WebAudioAPISound "https://s3.eu-central-1.amazonaws.com/test-75730/7-siete.mp3")
+                 (new js/WebAudioAPISound "https://s3.eu-central-1.amazonaws.com/test-75730/8-ocho.mp3")
                  ])
 (def timer nil)
 (def shift 0.14)
@@ -54,7 +54,7 @@
     (do
       ;; (println (str "----- " pos))
       (case (mod pos 8)
-        ;; (0 4) (pl thebeep)
+        ;; (0 4) (.play thebeep)
         0 (pl (counts 0))
         ;; 1 (pl (counts 1))
         ;; 2 (pl (counts 2))
@@ -67,8 +67,10 @@
 (do
   (aset theaudio "controls" true)
   (aset theaudio "volume" 0.5)
-  (aset theaudio "onplay" #(play @beats asdf))
+  (aset theaudio "onplay" (fn [] (js/unlock) (play @beats asdf)))
   (aset theaudio "onpause" #(js/clearTimeout timer))
+  ;; (aset theaudio "seeking" #(js/clearTimeout timer))
+  ;; (aset theaudio "seeked" (fn [] (js/unlock) (play @beats asdf)))
   )
 
 (let [name (re-frame/subscribe [:name])]
@@ -78,6 +80,8 @@
      [:div [:a {:href "/about"} "go to About Page"]]
      [:div {:ref #(if % (.appendChild % theaudio))
             :on-key-down (fn [e] (println (aget theaudio "currentTime")))}]
+      [:input {:type "button" :value "Click me!"
+              :on-click #(.play thebeep)}]
      ]))
 
 ;; {:ref fn} -- fn is run two times: when the element is created and when it is destroyed
