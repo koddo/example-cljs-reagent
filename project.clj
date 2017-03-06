@@ -2,7 +2,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.229"]
                  [reagent "0.6.0"]
-                 [re-frame "0.9.1"]
+                 [re-frame "0.9.2"]
                  [re-frisk "0.3.2"]
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.6"]
@@ -55,7 +55,6 @@
                     :preloads             [devtools.preload]
                     :external-config      {:devtools/config {:features-to-install :all}}
                     ;; :closure-defines {"clairvoyant.core.devmode" true}
-                    ;; TODO: check if :parallel-build false solves the problem with random order of deps --- http://dev.clojure.org/jira/browse/CLJS-1948
                     }}
 
     {:id           "min"

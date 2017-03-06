@@ -67,10 +67,8 @@
 (do
   (aset theaudio "controls" true)
   (aset theaudio "volume" 0.5)
-  (aset theaudio "onplay" (fn [] (js/unlock) (play @beats asdf)))
+  (aset theaudio "onplay" #(play @beats asdf))
   (aset theaudio "onpause" #(js/clearTimeout timer))
-  ;; (aset theaudio "seeking" #(js/clearTimeout timer))
-  ;; (aset theaudio "seeked" (fn [] (js/unlock) (play @beats asdf)))
   )
 
 (let [name (re-frame/subscribe [:name])]
@@ -80,8 +78,9 @@
      [:div [:a {:href "/about"} "go to About Page"]]
      [:div {:ref #(if % (.appendChild % theaudio))
             :on-key-down (fn [e] (println (aget theaudio "currentTime")))}]
-      [:input {:type "button" :value "Click me!"
-              :on-click #(.play thebeep)}]
+     [:input {:type "button" :value "Click me!"
+              :on-click #(.playy thebeep)}]
+     [:img {:src "http://koddo.github.io/whatever.png"}]
      ]))
 
 ;; {:ref fn} -- fn is run two times: when the element is created and when it is destroyed
