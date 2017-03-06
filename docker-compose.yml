@@ -1,4 +1,5 @@
 # --project-name cljstest
+# project name is set in .env file
 
 version: '3'
 
@@ -25,4 +26,20 @@ services:
       - .:/home/node/theproject
     working_dir: /home/node/theproject
     command: gulp
+
+  flask-static:
+    build:
+      context: .
+      dockerfile: Dockerfile_flask
+    volumes:
+      - .:/home/theuser/theproject
+    working_dir: /home/theuser/theproject
+    command: bin/flask-static.py
+    ports:
+      - "3448:3448"
+
+  browser-console-logger:
+    image: koddo/browser-console-logger
+    ports:
+      - "9907:9907"
 
