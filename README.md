@@ -64,6 +64,14 @@ This is useful when you want to add an app directly to a blog post page.
 
 TODO: flask app to serve same index.html for any route: `/`, `/about`, `/etc`, `/*`
 
+# Publish
+
+TODO: strip the `browser-console-logger.js` from `index.html` when publish
+
+```
+$ lein clean && lein cljsbuild once min
+```
+
 # Misc
 
 Originally the boilerplate was generated with <https://github.com/Day8/re-frame-template>:
