@@ -55,7 +55,7 @@ $ lein doo phantom test once
 ```
 
 TODO: write actual tests
-
+TODO: turn build-on-push on in travis
 
 # Routes
 
