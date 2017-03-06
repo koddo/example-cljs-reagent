@@ -32,10 +32,10 @@
   :profiles
   {:dev
    {:dependencies [[binaryage/devtools "0.8.2"]
-                   [figwheel-sidecar "0.5.7"]
+                   [figwheel-sidecar "0.5.9"]
                    [com.cemerick/piggieback "0.2.1"]]
 
-    :plugins      [[lein-figwheel "0.5.7"]
+    :plugins      [[lein-figwheel "0.5.9"]
                    [lein-doo "0.1.7"]]
     }}
 
