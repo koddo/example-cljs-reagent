@@ -69,7 +69,7 @@ TODO: flask app to serve same index.html for any route: `/`, `/about`, `/etc`, `
 TODO: strip the `browser-console-logger.js` from `index.html` when publish
 
 ```
-$ lein clean && lein cljsbuild once min
+$ docker-compose run --rm --no-deps figwheel bash -c "lein clean && lein cljsbuild once min"
 ```
 
 # Misc
@@ -87,7 +87,6 @@ The name is `theproject` everywhere, so it can be easily replaced. I don't want 
 
 For cljs-tools just enable custom formatters: <https://github.com/binaryage/cljs-devtools/blob/master/docs/installation.md#enable-custom-formatters-in-chrome>
 
-
 # Checklist
 
 - cider-connect
@@ -103,6 +102,9 @@ I now did bucket/permissions/cors -> just saved the example with `*`
 
 I go to dance class, and I'm a fan of rueda de casino.
 It's hard for me to establish correspondence between moves and their names.
+
+Music mp3 should to be encoded with constant bit rate, otherwise `audio.currentTime` is extremely inaccurate: <http://stackoverflow.com/questions/25468063/html5-audio-currenttime-attribute-inaccurate/37768679#37768679>  
+Or use ogg vorbis.
 
 `$ awk '{print $1}' labels.txt` or `double_beats.py labels.txt`
 
