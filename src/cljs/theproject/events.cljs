@@ -22,12 +22,14 @@
  (fn [db [_ active-panel]]
    (assoc db :active-panel active-panel)))
 
-
 (re-frame/reg-event-db
- :current-time
- [check-spec-interceptor re-frame/debug]
- (fn asdf [db _]
-   db))
+ :set-pos
+ [check-spec-interceptor
+  ;; re-frame/debug
+  ]
+ (fn [db [_ pos]]
+   (assoc db :pos pos)))
+
 
 ;; )   ; end of trace-forms
 

@@ -16,4 +16,9 @@
  (fn [db _]
    (:active-panel db)))
 
+(re-frame/reg-sub
+ :pos
+ (fn [db _]
+   (:pos db)))
+
 ;; )   ; end of trace-forms
