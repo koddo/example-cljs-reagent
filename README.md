@@ -72,6 +72,17 @@ TODO: strip the `browser-console-logger.js` from `index.html` when publish
 $ docker-compose run --rm --no-deps figwheel bash -c "lein clean && lein cljsbuild once min"
 ```
 
+Or in a separate repo clone:
+
+```
+$ cd ~/workspace.shared-with-vm/example-cljs-reagent--for-publishing/
+$ ln -s ../example-cljs-reagent/lein-deps
+$ git pull && ssh vagrant@vagrant.local 'cd /mnt/hgfs/shared/example-cljs-reagent--for-publishing && docker-compose run --rm --no-deps figwheel bash -c "lein clean && lein cljsbuild once min"'
+$ cp -R resources/public/* ~/workspace.example-cljs-reagent.gh-pages/
+$ cd ~/workspace.example-cljs-reagent.gh-pages/ && git commit --allow-empty-message -am '' && git push
+```
+
+
 # Misc
 
 Originally the boilerplate was generated with <https://github.com/Day8/re-frame-template>:
@@ -107,4 +118,9 @@ Music mp3 should to be encoded with constant bit rate, otherwise `audio.currentT
 Or use ogg vorbis.
 
 `$ awk '{print $1}' labels.txt` or `double_beats.py labels.txt`
+
+
+
+
+
 
