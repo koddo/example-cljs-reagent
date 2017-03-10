@@ -6,7 +6,7 @@
 
 (s/def ::name string?)
 (s/def ::active-panel #{:home-panel :about-panel})
-(s/def ::pos (s/and number? #(>= % 0)))
+(s/def ::pos (s/and number? #(>= % -1)))   ; it can be before the first beat
 
 (s/def ::good-state (only-keys :req-un [::name ::active-panel ::pos]))
 
