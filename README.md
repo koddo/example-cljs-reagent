@@ -119,6 +119,8 @@ Or use ogg vorbis.
 
 `$ awk '{print $1}' labels.txt` or `double_beats.py labels.txt`
 
+There are some libs to work with localstorage, but I found they don't reduce complexity, so I work with it directly, that's not hard at all.
+
 
 
 
