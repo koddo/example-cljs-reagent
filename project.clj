@@ -8,6 +8,7 @@
                  [kibu/pushy "0.3.6"]
                  ;; [org.clojars.stumitchell/clairvoyant "0.2.0"]    [day8/re-frame-tracer "0.1.1-SNAPSHOT"]
                  [cljs-ajax "0.5.8"]
+                 [com.cognitect/transit-cljs "0.8.239"]
                  ]
 
   :plugins [[lein-cljsbuild "1.1.4"]]
