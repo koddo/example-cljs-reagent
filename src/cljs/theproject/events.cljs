@@ -2,14 +2,19 @@
   (:require [re-frame.core :as re-frame]
             [theproject.db :as db]
             [cljs.spec :as s]
-            [cognitect.transit :as t]
+            [cognitect.transit]
             ;; [clairvoyant.core :refer-macros [trace-forms]]   [re-frame-tracer.core :refer [tracer]]
             ))
 
 ;; (trace-forms {:tracer (tracer :color "green")}
 
-(def w (t/writer :json))
-(def r (t/reader :json))
+(let [w (cognitect.transit/writer :json)
+      r (cognitect.transit/reader :json)]
+  (defn transit-read [s]
+    (cognitect.transit/read r s))
+  (defn transit-write [d]
+    (cognitect.transit/write w d))
+  )
 
 (def check-spec-interceptor
   (re-frame/after #(s/assert :theproject.db/good-state %)))
@@ -37,7 +42,7 @@
      (if (nil? moves-str)
        {:db db/default-db}
        {:db (assoc db/default-db
-                   :moves (t/read r moves-str))}))))
+                   :moves (transit-read moves-str))}))))
 
 (.addEventListener js/window "storage"
                    #(re-frame/dispatch [:storage-update %]))
@@ -48,11 +53,11 @@
  (fn [db [_ storage-event]]
    (println (.-key storage-event) (.-newValue storage-event))
    (if (= (.-key storage-event) local-storage-key)
-    (assoc db :moves (t/read r (.-newValue storage-event))))))
+    (assoc db :moves (transit-read (.-newValue storage-event))))))
 
 (defn save-to-local-store
   [moves]
-  (.setItem js/localStorage local-storage-key (t/write w moves)))
+  (.setItem js/localStorage local-storage-key (transit-write moves)))
   
 
 (re-frame/reg-event-db
