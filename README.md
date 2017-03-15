@@ -45,6 +45,7 @@ You can now try this to see effect in the browser:
 (js/console.log "hello world")
 ```
 
+To enable `cider-eval-region` do `M-: (setq cider-repl-type "cljs")` in the repl buffer.
 
 # Tests
 
@@ -122,6 +123,19 @@ Or use ogg vorbis.
 There are some libs to work with localstorage, but I found they don't reduce complexity, so I work with it directly, that's not hard at all.
 
 
+
+name eight-counts type(warm-up | salsa | rueda)
+
+warm-up
+casino
+side-step
+triangle
+square
+quater turn, half turn
+left turn
+right turn
+enchufla con vuelta
+guapea
 
 
 
