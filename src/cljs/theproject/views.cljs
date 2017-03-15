@@ -3,11 +3,15 @@
             ;; [clairvoyant.core :refer-macros [trace-forms]]   [re-frame-tracer.core :refer [tracer]]
             [ajax.core :as ajax]
             [clojure.string :as string]
+            [reagent.core :as reagent]
             ))
 
 ;; (trace-forms {:tracer (tracer :color "gold")}
 
 ;; home
+
+(def <sub (comp deref re-frame.core/subscribe))
+(def >evt re-frame.core/dispatch)
 
 (defonce beats (atom []))
 
@@ -151,8 +155,18 @@
                      (.appendChild el theaudio)))}]
      [:input {:type "button" :value "Click me!" :on-click #(.play thebeep)}]
      [:div @pos]
-     [:div (for [x names-of-moves]
-             [:p {:key x} x])]
+     (into [:div]
+           (for [x names-of-moves]
+             ^{:key x}
+             ;; [:p x]
+             [:span
+              [:input {:type "checkbox"
+                       :checked (<sub [:move x])
+                       :on-change #(>evt [:set-move [x (-> % .-target .-checked)]])
+                       }]
+              [:label x]
+              ]
+             ))
      ]))
 
 ;; {:ref fn} -- fn is run two times: when the element is created and when it is destroyed
@@ -188,3 +202,5 @@
     [show-panel @active-panel]))
 
 ;; )   ; end of trace-forms
+
+

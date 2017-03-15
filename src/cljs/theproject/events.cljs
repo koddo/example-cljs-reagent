@@ -56,9 +56,10 @@
     (assoc db :moves (transit-read (.-newValue storage-event))))))
 
 (defn save-to-local-store
-  [moves]
-  (.setItem js/localStorage local-storage-key (transit-write moves)))
-  
+  [db]
+  (.setItem js/localStorage local-storage-key (transit-write (:moves db))))
+
+
 
 (re-frame/reg-event-db
  :set-active-panel
@@ -74,5 +75,16 @@
  (fn [db [_ pos]]
    (assoc db :pos pos)))
 
+(re-frame/reg-event-db
+ :set-move
+ [check-spec-interceptor
+  re-frame/debug
+  (re-frame/after save-to-local-store)
+  ]
+ (fn [db [_ [move value]]]
+   (assoc-in db [:moves move] value)))
+
 ;; )   ; end of trace-forms
+
+
 

@@ -21,4 +21,9 @@
  (fn [db _]
    (:pos db)))
 
+(re-frame/reg-sub
+ :move
+ (fn [db [_ move]]
+   (get-in db [:moves move])))
+
 ;; )   ; end of trace-forms
