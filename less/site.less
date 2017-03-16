@@ -2,6 +2,7 @@ p {
     height: 50px;
     padding: 0;
     margin: 0;
+    transform: translateZ(0);
 }
 
 .example-enter {
@@ -12,7 +13,7 @@ p {
 .example-enter.example-enter-active {
     height: 50px;
     opacity: 1;
-    transition: 500ms;
+    transition: 500ms linear;
 }
 
 .example-leave {
@@ -23,7 +24,7 @@ p {
 .example-leave.example-leave-active {
     height: 1px;
     opacity: 0.01;
-    transition: 500ms;
+    transition: 500ms linear;
 }
 
 /* .example-enter { */
