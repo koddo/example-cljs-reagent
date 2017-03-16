@@ -1,1 +1,1 @@
-p{height:50px;padding:0;margin:0;transform:translateZ(0)}.example-enter{height:0;color:#fff}.example-enter.example-enter-active{height:50px;color:#000;transition:.5s linear}.example-leave{height:50px;color:#000}.example-leave.example-leave-active{height:0;color:#fff;transition:.5s linear}
+p{height:50px;padding:0;margin:0;transform:translateZ(0)}.example-enter{height:1px;opacity:.01}.example-enter.example-enter-active{height:50px;opacity:1;transition:.5s}.example-leave{height:50px;opacity:1}.example-leave.example-leave-active{height:1px;opacity:.01;transition:.5s}
