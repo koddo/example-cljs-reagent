@@ -84,6 +84,18 @@
  (fn [db [_ [move value]]]
    (assoc-in db [:moves move] value)))
 
+(re-frame/reg-event-db
+ :add-move-to-history
+ [check-spec-interceptor
+  re-frame/debug
+  ]
+ (fn [db [_ move]]
+   (let [incremented (+ (db :history-counter) 1)]
+     (-> db
+         (assoc :history-counter incremented)
+         (update-in [:history] #(conj (take 6 %) [move incremented]))
+         ))))
+
 ;; )   ; end of trace-forms
 
 

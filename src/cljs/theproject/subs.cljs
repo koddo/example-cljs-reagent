@@ -26,4 +26,14 @@
  (fn [db [_ move]]
    (get-in db [:moves move])))
 
+(re-frame/reg-sub
+ :moves
+ (fn [db _]
+   (get db :moves)))
+
+(re-frame/reg-sub
+ :history
+ (fn [db _]
+   (get db :history)))
+
 ;; )   ; end of trace-forms

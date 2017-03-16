@@ -127,7 +127,12 @@
         ;; 1 (pl (counts 1))
         ;; 2 (pl (counts 2))
 
-        4 (pl (moves (rand-nth names-of-moves)))
+        ;; 4 (pl (moves (rand-nth names-of-moves)))
+        4 (let [m (rand-nth names-of-moves)
+                mp3 (moves m)]
+            (pl mp3)
+            (>evt [:add-move-to-history m]))
+
         ;; 4 (pl (counts 4))
         ;; 5 (pl (counts 5))
         ;; 6 (pl (counts 6))
@@ -170,11 +175,10 @@
               [:label x]
               ]
              ))
-     
-     [css-transition-group {:transitionName "example" :transitionEnterTimeout 500 :transitionLeaveTimeout 500}
-      (if (<sub [:move "balsero"])
-        ^{:key "whatever"} [:p "balsero"])
-      ]
+     [css-transition-group {:component "div" :transitionName "example" :transitionEnterTimeout 500 :transitionLeaveTimeout 500}
+      (doall (for [[m c] (<sub [:history])]
+               ^{:key (str m c)} [:p m]
+               ))]
      ]))
 
 ;; {:ref fn} -- fn is run two times: when the element is created and when it is destroyed
@@ -210,5 +214,6 @@
     [show-panel @active-panel]))
 
 ;; )   ; end of trace-forms
+
 
 
