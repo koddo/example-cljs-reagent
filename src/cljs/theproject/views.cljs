@@ -142,6 +142,9 @@
   (aset theaudio "onseeked" (fn [] (seek @beats #(re-frame/dispatch [:set-pos %]))))
   )
 
+(def css-transition-group
+  (reagent/adapt-react-class js/React.addons.CSSTransitionGroup))
+
 (let [name (re-frame/subscribe [:name])
       pos  (re-frame/subscribe [:pos])
       ]
@@ -161,12 +164,17 @@
              ;; [:p x]
              [:span
               [:input {:type "checkbox"
-                       :checked (<sub [:move x])
+                       :checked (boolean (<sub [:move x]))
                        :on-change #(>evt [:set-move [x (-> % .-target .-checked)]])
                        }]
               [:label x]
               ]
              ))
+     
+     [css-transition-group {:transitionName "example" :transitionEnterTimeout 500 :transitionLeaveTimeout 500}
+      (if (<sub [:move "balsero"])
+        ^{:key "whatever"} [:p "balsero"])
+      ]
      ]))
 
 ;; {:ref fn} -- fn is run two times: when the element is created and when it is destroyed
