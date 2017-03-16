@@ -80,7 +80,8 @@ $ cd ~/workspace.shared-with-vm/example-cljs-reagent--for-publishing/
 $ ln -s ../example-cljs-reagent/lein-deps
 $ git pull && ssh vagrant@vagrant.local 'cd /mnt/hgfs/shared/example-cljs-reagent--for-publishing && docker-compose run --rm --no-deps figwheel bash -c "lein clean && lein cljsbuild once min"'
 $ cp -R resources/public/* ~/workspace.example-cljs-reagent.gh-pages/
-$ cd ~/workspace.example-cljs-reagent.gh-pages/ && git commit --allow-empty-message -am '' && git push
+$ cp -R ~/workspace.shared-with-vm/example-cljs-reagent/resources/public/css/* ~/workspace.example-cljs-reagent.gh-pages/css/
+$ cd ~/workspace.example-cljs-reagent.gh-pages/ && git add --all && git commit --allow-empty-message -am '' && git push
 ```
 
 
