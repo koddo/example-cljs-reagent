@@ -72,6 +72,7 @@
 (let [construct-moves-audio-objects (fn [acc move] (assoc acc move (new js/WebAudioAPISound (str "https://s3.eu-central-1.amazonaws.com/test-75730/moves/" (js/encodeURIComponent move) ".mp3"))))]
   (def moves (reduce construct-moves-audio-objects {} names-of-moves)))
 
+
 ;; js/encodeURIComponent
 
 ;; (defn get-pos []
@@ -115,14 +116,15 @@
          ]
      (func pos))))
 
+;; TODO: sometimes in ios safari it skips positions, going 1,2,3,5,..., so it skips sounds, seems it depends on slow processing of app state or something
 (defn rhythm-func [pos]
   (re-frame/dispatch [:set-pos pos])
   (let [pl (fn [sound] (aset sound "currentTime" 0) (.play sound))]
     (do
-      ;; (println (str "----- " pos))
+      (println (str "----- " pos))
       (case (mod pos 8)
         ;; (0 4) (.play thebeep)
-        0 (.play thebeep)
+        0 (do (.play thebeep) (println "beep " pos))
         ;; 0 (pl (counts 0))
         ;; 1 (pl (counts 1))
         ;; 2 (pl (counts 2))
@@ -131,7 +133,9 @@
         4 (let [m (rand-nth names-of-moves)
                 mp3 (moves m)]
             (pl mp3)
-            (>evt [:add-move-to-history m]))
+            (>evt [:add-move-to-history m])
+            (println m " " pos)
+            )
 
         ;; 4 (pl (counts 4))
         ;; 5 (pl (counts 5))
