@@ -38,39 +38,41 @@
 (def timer nil)
 (def shift 0.14)
 
-(def names-of-moves ["balsero"
-                     "coca-cola"
-                     "copelia"
-                     "cubanita"
-                     "cubanito"
-                     "dame"
-                     "dame dos"
-                     "dile que no"
-                     "echeverria"
-                     "echufla y dame"
-                     "el dedo"
-                     "enchufla"
-                     "enchufla arriba"
-                     "enchufla con cuba"
-                     "enchufla con vuelta"
-                     "enchufla doble"
-                     "kentucky"
-                     "la familia"
-                     "la preciosa"
-                     "mambo"
-                     "mantania"
-                     "por atras"
-                     "prima"
-                     "prima con la hermana"
-                     "sacala"
-                     "setenta"
-                     "sombrero"
-                     "vasilala"
-                     ])
+
+(def map-of-moves {   ; M-x align-regexp {
+                   "balsero"              {:eight-counts 2 :links ["http://www.salsalust.com/move.php?id=78" "http://ruedastandard.salsanor.com/more/intermediate/casino-figures/#balsero"] :my-comment "double sombrero"}
+                   "coca-cola"            {:eight-counts 1 :links [] :my-comment ""}
+                   "copelia"              {:eight-counts 1 :links [] :my-comment ""}
+                   "cubanita"             {:eight-counts 1 :links [] :my-comment ""}
+                   "cubanito"             {:eight-counts 1 :links [] :my-comment ""}
+                   "dame"                 {:eight-counts 1 :links [] :my-comment ""}
+                   "dame dos"             {:eight-counts 1 :links [] :my-comment ""}
+                   "dile que no"          {:eight-counts 1 :links [] :my-comment ""}
+                   "echeverria"           {:eight-counts 1 :links [] :my-comment ""}
+                   "echufla y dame"       {:eight-counts 1 :links [] :my-comment ""}
+                   "el dedo"              {:eight-counts 1 :links ["http://www.salsalust.com/move.php?id=48"] :my-comment "lento + enchufla con vuelta + enchufla"}
+                   "enchufla"             {:eight-counts 1 :links [] :my-comment ""}
+                   "enchufla arriba"      {:eight-counts 1 :links [] :my-comment ""}
+                   "enchufla con cuba"    {:eight-counts 1 :links [] :my-comment ""}
+                   "enchufla con vuelta"  {:eight-counts 1 :links [] :my-comment ""}
+                   "enchufla doble"       {:eight-counts 1 :links [] :my-comment ""}
+                   "kentucky"             {:eight-counts 1 :links [] :my-comment ""}
+                   "la familia"           {:eight-counts 1 :links [] :my-comment ""}
+                   "la preciosa"          {:eight-counts 1 :links [] :my-comment ""}
+                   "mambo"                {:eight-counts 1 :links [] :my-comment ""}
+                   "mantania"             {:eight-counts 3 :links ["http://www.salsalust.com/move.php?id=75" "http://ruedastandard.salsanor.com/more/intermediate/casino-figures/#montana"] :my-comment "sombrero + enchufla con vuelta + enchufla"}   ; TODO: rename to montana
+                   "por atras"            {:eight-counts 1 :links [] :my-comment ""}
+                   "prima"                {:eight-counts 1 :links [] :my-comment ""}
+                   "prima con la hermana" {:eight-counts 1 :links [] :my-comment ""}
+                   "sacala"               {:eight-counts 1 :links [] :my-comment ""}
+                   "setenta"              {:eight-counts 1 :links [] :my-comment ""}
+                   "sombrero"             {:eight-counts 1 :links [] :my-comment ""}
+                   "vasilala"             {:eight-counts 1 :links [] :my-comment ""}
+                   })
 
 ;; TODO: rename all mp3 files to get rid of underscores
 (let [construct-moves-audio-objects (fn [acc move] (assoc acc move (new js/WebAudioAPISound (str "https://s3.eu-central-1.amazonaws.com/test-75730/moves/" (js/encodeURIComponent move) ".mp3"))))]
-  (def moves (reduce construct-moves-audio-objects {} names-of-moves)))
+  (def moves-sounds (reduce construct-moves-audio-objects {} (keys map-of-moves))))
 
 
 ;; js/encodeURIComponent
@@ -121,20 +123,19 @@
   (re-frame/dispatch [:set-pos pos])
   (let [pl (fn [sound] (aset sound "currentTime" 0) (.play sound))]
     (do
-      (println (str "----- " pos))
+      ;; (println (str "----- " pos))
       (case (mod pos 8)
+        0 (.play thebeep)
         ;; (0 4) (.play thebeep)
-        0 (do (.play thebeep) (println "beep " pos))
         ;; 0 (pl (counts 0))
         ;; 1 (pl (counts 1))
         ;; 2 (pl (counts 2))
 
-        ;; 4 (pl (moves (rand-nth names-of-moves)))
-        4 (let [m (rand-nth names-of-moves)
-                mp3 (moves m)]
+        4 (let [m (rand-nth (keys map-of-moves))
+                mp3 (moves-sounds m)]
             (pl mp3)
             (>evt [:add-move-to-history m])
-            (println m " " pos)
+            ;; (println m " " pos)
             )
 
         ;; 4 (pl (counts 4))
@@ -168,7 +169,7 @@
      [:input {:type "button" :value "Click me!" :on-click #(.play thebeep)}]
      [:div @pos]
      (into [:div]
-           (for [x names-of-moves]
+           (for [x (keys map-of-moves)]
              ^{:key x}
              ;; [:p x]
              [:span
@@ -181,7 +182,7 @@
              ))
      [css-transition-group {:component "div" :transitionName "example" :transitionEnterTimeout 500 :transitionLeaveTimeout 500}
       (doall (for [[m c] (<sub [:history])]
-               ^{:key (str m c)} [:p m]
+               ^{:key (str m c)} [:p m " = " (get-in map-of-moves [m :my-comment])]
                ))]
      ]))
 
