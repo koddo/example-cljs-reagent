@@ -2,7 +2,8 @@
 /target
 /*-init.clj
 /resources/public/js/compiled
-/resources/public/css
+/resources/public/css/*
+!/resources/public/css/.gitkeep
 out
 
 /lein-deps
