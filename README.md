@@ -3,6 +3,14 @@
 
 # Run
 
+Dependencies first:
+
+``` Shell
+$ docker-compose run --rm --no-deps figwheel lein deps
+```
+
+Then run:
+
 ``` Shell
 $ docker-compose up -d
 ```
