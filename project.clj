@@ -1,8 +1,10 @@
 (defproject theproject "0.1.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.229"]
-                 [reagent "0.6.1" :exclusions [cljsjs/react]]
-                 [cljsjs/react-with-addons "15.4.1-0"]
+                 [reagent "0.6.1" :exclusions [cljsjs/react]]   ; exclusions below are explained here: https://github.com/reagent-project/reagent/issues/290
+                 [cljsjs/react-with-addons "15.4.2-2"]
+                 [cljsjs/react-dom "15.4.2-2" :exclusions [cljsjs/react]]
+                 [cljsjs/react-dom-server "15.4.2-2" :exclusions [cljsjs/react]]
                  [re-frame "0.9.2"]
                  [re-frisk "0.3.2"]
                  [secretary "1.2.3"]
