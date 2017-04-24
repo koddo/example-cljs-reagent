@@ -13,7 +13,7 @@
   (when config/debug?
     (enable-console-print!)
     (enable-re-frisk!)
-    (println "dev mode")
+    (println "--- dev-setup ---")
     ))
 
 (defn mount-root []

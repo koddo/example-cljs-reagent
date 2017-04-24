@@ -1,4 +1,4 @@
-# project name is set in the .env file
+## project name is set in the .env file
 
 version: '2'
 
@@ -32,4 +32,5 @@ services:
     image: koddo/browser-console-logger
     ports:
       - "9907:9907"
+
 

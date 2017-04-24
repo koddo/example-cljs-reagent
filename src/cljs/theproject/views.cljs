@@ -155,36 +155,37 @@
 (def css-transition-group
   (reagent/adapt-react-class js/React.addons.CSSTransitionGroup))
 
-(let [name (re-frame/subscribe [:name])
-      pos  (re-frame/subscribe [:pos])
-      ]
-  (defn home-panel []
-    [:div
-     (str "Hello from " @name ". This is the Home Page.")
-     [:div [:a {:href "/about"} "go to About Page"]]
-     [:div {:ref (fn [el]
-                   (if (and el
-                            (not (.hasChildNodes el)))
-                     (.appendChild el theaudio)))}]
-     [:input {:type "button" :value "Click me!" :on-click #(.play thebeep)}]
-     [:div @pos]
-     (into [:div]
-           (for [x (keys map-of-moves)]
-             ^{:key x}
-             ;; [:p x]
-             [:span
-              [:input {:type "checkbox"
-                       :checked (boolean (<sub [:move x]))
-                       :on-change #(>evt [:set-move [x (-> % .-target .-checked)]])
-                       }]
-              [:label x]
-              ]
-             ))
-     [css-transition-group {:component "div" :transitionName "example" :transitionEnterTimeout 500 :transitionLeaveTimeout 500}
-      (doall (for [[m c] (<sub [:history])]
-               ^{:key (str m c)} [:p m " = " (get-in map-of-moves [m :my-comment])]
-               ))]
-     ]))
+(defn home-panel []
+  (let [name (re-frame/subscribe [:name])
+        pos  (re-frame/subscribe [:pos])
+        ]
+    (fn []
+      [:div
+       (str "Hello from " @name ". This is the Home Page.")
+       [:div [:a {:href "/about"} "go to About Page"]]
+       [:div {:ref (fn [el]
+                     (if (and el
+                              (not (.hasChildNodes el)))
+                       (.appendChild el theaudio)))}]
+       [:input {:type "button" :value "Click me!" :on-click #(.play thebeep)}]
+       [:div @pos]
+       (into [:div]
+             (for [x (keys map-of-moves)]
+               ^{:key x}
+               ;; [:p x]
+               [:span
+                [:input {:type "checkbox"
+                         :checked (boolean (<sub [:move x]))
+                         :on-change #(>evt [:set-move [x (-> % .-target .-checked)]])
+                         }]
+                [:label x]
+                ]
+               ))
+       [css-transition-group {:component "div" :transitionName "example" :transitionEnterTimeout 500 :transitionLeaveTimeout 500}
+        (doall (for [[m c] (<sub [:history])]
+                 ^{:key (str m c)} [:p m " = " (get-in map-of-moves [m :my-comment])]
+                 ))]
+       ])))
 
 ;; {:ref fn} -- fn is run two times: when the element is created and when it is destroyed
 ;; we append audio element to the div when it's created
@@ -214,9 +215,10 @@
   [panels panel-name])
 
 
-(let [active-panel (re-frame/subscribe [:active-panel])]
-  (defn main-panel []
-    [show-panel @active-panel]))
+(defn main-panel []
+  (let [active-panel (re-frame/subscribe [:active-panel])]
+    (fn []
+      [show-panel @active-panel])))
 
 ;; )   ; end of trace-forms
 
